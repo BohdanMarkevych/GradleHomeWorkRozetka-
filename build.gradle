@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '6.14.3'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.2.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.1'
+    implementation group: 'com.github.cliftonlabs', name: 'json-simple', version: '4.0.1'
+}
+
+def suite1 = project.hasProperty("suite1")
+
+test {
+    useTestNG() {
+        useDefaultListeners = true
+        suiteXmlBuilder().suite(name: 'Test') {
+            test(name: 'test.Test') {
+                classes('') {
+                    'class'(name: 'test.Test')
+                }
+            }
+        }
+    }
+}
