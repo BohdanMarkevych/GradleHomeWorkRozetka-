@@ -20,7 +20,7 @@ dependencies {
 
 def suite1 = project.hasProperty("suite1")
 
-test {
+def testTask = tasks.named('test') {
     useTestNG() {
         useDefaultListeners = true
         suiteXmlBuilder().suite(name: 'Test') {
@@ -31,4 +31,9 @@ test {
             }
         }
     }
+}
+
+tasks.named('check') {
+    print('Test done')
+    dependsOn(testTask)
 }

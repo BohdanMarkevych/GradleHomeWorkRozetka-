@@ -19,7 +19,7 @@ public class CheckBox extends AbstractElement{
             webElement.click();
         }
         else {
-            logger.info("Element is already checked!");
+            logger.info("Element is checked!");
         }
     }
 }

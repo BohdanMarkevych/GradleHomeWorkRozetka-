@@ -51,6 +51,20 @@ public class Test extends BaseTest {
             ShoppingCartPage shoppingCartPage = getShoppingCartPage();
             Assert.assertTrue(new CheckPrice().checkPrice(shoppingCartPage, DEFAULT_WAITING_TIME) >Integer.parseInt(fields[2]));
         }
-
+    @org.testng.annotations.Test(dataProvider="dp")
+    public void myFailedTest(String data) throws InterruptedException {
+        String[] fields = data.split(",");
+        JsonReader jsonReader=new JsonReader();
+        jsonReader.jsonReader();
+        HomePage homePage = getHomePage();
+        new EnterTextToSearchField().enterText(homePage, DEFAULT_WAITING_TIME, fields[0]);
+        SearchResultPage searchResultPage = getSearchResultPage();
+        CheckFilters checkFilters = new CheckFilters();
+        checkFilters.takeCheckBox(searchResultPage, DEFAULT_WAITING_TIME, fields[1]);
+        checkFilters.takeExpensiveItem(searchResultPage, DEFAULT_WAITING_TIME);
+        checkFilters.clickFirstItem(homePage, DEFAULT_WAITING_TIME);
+        ShoppingCartPage shoppingCartPage = getShoppingCartPage();
+        Assert.assertTrue(new CheckPrice().checkPrice(shoppingCartPage, DEFAULT_WAITING_TIME) >Integer.parseInt(fields[2])+10000000);
+    }
     }
 

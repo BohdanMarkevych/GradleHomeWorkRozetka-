@@ -32,9 +32,8 @@ public class CheckFilters {
         Thread.sleep(1000);
         searchResultPage.takeExpensiveItem();
         searchResultPage.waitForPageLoadComplete(DEFAULT_WAITING_TIME);
-        searchResultPage.waitForElementIsClicable(DEFAULT_WAITING_TIME, searchResultPage.getCartButtons());
-        searchResultPage.waitVisibilityOfElement(DEFAULT_WAITING_TIME, searchResultPage.getSearchField());
         Thread.sleep(1000);
+        searchResultPage.waitForPageLoadComplete(DEFAULT_WAITING_TIME);
         searchResultPage.clickCartButtonOnFirstProduct();
     }
 
