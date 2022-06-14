@@ -26,7 +26,7 @@ dependencies {
 
 test {
     useTestNG(){
-        options.suites("src/test/resources/dataTest.xml")
+        options.suites("src/test/resources/testSet.xml")
     }
 }
 
