@@ -15,25 +15,18 @@ dependencies {
     testImplementation group: 'org.testng', name: 'testng', version: '6.14.3'
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.2.0'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.1'
-    implementation group: 'com.github.cliftonlabs', name: 'json-simple', version: '4.0.1'
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+    implementation group: 'com.sun.xml.bind', name: 'jaxb-core', version: '4.0.0'
+    implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '4.0.0'
+    implementation group: 'org.javassist', name: 'javassist', version: '3.29.0-GA'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
+
 }
 
-def suite1 = project.hasProperty("suite1")
-
-def testTask = tasks.named('test') {
-    useTestNG() {
-        useDefaultListeners = true
-        suiteXmlBuilder().suite(name: 'Test') {
-            test(name: 'test.Test') {
-                classes('') {
-                    'class'(name: 'test.Test')
-                }
-            }
-        }
+test {
+    useTestNG(){
+        options.suites("src/test/resources/dataTest.xml")
     }
 }
 
-tasks.named('check') {
-    print('Test done')
-    dependsOn(testTask)
-}

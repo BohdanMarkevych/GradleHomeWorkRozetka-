@@ -1,7 +1,6 @@
-package pages;
+package rozetka.pages;
 
-import Decorator.AbstractElement;
-import Decorator.CheckBox;
+import decorator.AbstractElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,14 +10,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 
 public class BasePage {
     WebDriver driver;
 
+    public WebDriver getDriver() {
+        return driver;
+    }
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(new AbstractElement.ExtendedFieldDecorator(new DefaultElementLocatorFactory(driver)), this);
+        PageFactory.initElements(new AbstractElement.CustomFieldDecorator(new DefaultElementLocatorFactory(driver)), this);
     }
 
     public void waitForPageLoadComplete(long timeToWait) {
@@ -26,13 +30,17 @@ public class BasePage {
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    public void waitForElementIsClicable(long timeToWait, WebElement webElement) {
+    public void waitForElementIsClickable(long timeToWait, WebElement webElement) {
         new WebDriverWait(driver, Duration.ofSeconds(timeToWait)).until(
               ExpectedConditions.elementToBeClickable(webElement) );
     }
 
-    public void waitVisibilityOfElement(long timeToWait, WebElement element) {
+    public void waitForVisibilityOfElement(long timeToWait, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWait));
         wait.until(ExpectedConditions.visibilityOf(element));
+
+    }
+    public void implicitWait(long timeToWait) {
+        driver.manage().timeouts().implicitlyWait(timeToWait, TimeUnit.SECONDS);
     }
 }

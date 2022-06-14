@@ -1,4 +1,4 @@
-package Decorator;
+package decorator;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.pagefactory.DefaultFieldDecorator;
@@ -8,37 +8,36 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public abstract class AbstractElement implements WebElement {
+public class AbstractElement implements WebElement {
     protected WebElement webElement;
 
-    public AbstractElement(WebElement webElement) {
-        this.webElement = webElement;
+    public AbstractElement(WebElement element) {
+        this.webElement = element;
     }
 
-    public static class ExtendedFieldDecorator extends DefaultFieldDecorator {
-        public ExtendedFieldDecorator(ElementLocatorFactory factory) {
+    public static class CustomFieldDecorator extends DefaultFieldDecorator {
+
+        public CustomFieldDecorator(ElementLocatorFactory factory) {
             super(factory);
         }
 
         @Override
         public Object decorate(ClassLoader loader, Field field) {
-            if (field.getType().equals(CheckBox.class)) {
-                ElementLocator locator = factory.createLocator(field);
-                if (locator == null) {
-                    return null;
-                }
-                return new CheckBox(proxyForLocator(loader, locator)) {
-                };
-            }
-            else if(field.getType().equals(Button.class)){
+            if (field.getType().equals(Button.class)) {
                 ElementLocator locator = factory.createLocator(field);
                 if (locator == null) {
                     return null;
                 }
                 return new Button(proxyForLocator(loader, locator)) {
                 };
-            }
-            else if(field.getType().equals(TextInput.class)){
+            } else if (field.getType().equals(CheckBox.class)) {
+                ElementLocator locator = factory.createLocator(field);
+                if (locator == null) {
+                    return null;
+                }
+                return new CheckBox(proxyForLocator(loader, locator)) {
+                };
+            } else if (field.getType().equals(TextInput.class)) {
                 ElementLocator locator = factory.createLocator(field);
                 if (locator == null) {
                     return null;
@@ -47,20 +46,16 @@ public abstract class AbstractElement implements WebElement {
                 };
             }
             return super.decorate(loader, field);
+
         }
-    }
-
-
-
-    @Override
-    public void click() {
 
     }
 
     @Override
-    public void submit() {
+    public void click() {}
 
-    }
+    @Override
+    public void submit() {}
 
     @Override
     public void sendKeys(CharSequence... keysToSend) {
@@ -68,9 +63,7 @@ public abstract class AbstractElement implements WebElement {
     }
 
     @Override
-    public void clear() {
-
-    }
+    public void clear() {}
 
     @Override
     public String getTagName() {
@@ -136,4 +129,5 @@ public abstract class AbstractElement implements WebElement {
     public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
         return null;
     }
+
 }
