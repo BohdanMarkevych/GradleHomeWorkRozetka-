@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filterDataRozetka>
+    <searchFiltersRozetka>
+        <productType>Notebook</productType>
+        <brand>ASUS</brand>
+        <allowedSum>50000</allowedSum>
+    </searchFiltersRozetka>
+    <searchFiltersRozetka>
+        <productType>IPad</productType>
+        <brand>Apple</brand>
+        <allowedSum>45000</allowedSum>
+    </searchFiltersRozetka>
+    <searchFiltersRozetka>
+        <productType>Холодильник</productType>
+        <brand>ATLANT</brand>
+        <allowedSum>40000</allowedSum>
+    </searchFiltersRozetka>
+    <searchFiltersRozetka>
+        <productType>Драбина</productType>
+        <brand>Drabest</brand>
+        <allowedSum>20000</allowedSum>
+    </searchFiltersRozetka>
+    <searchFiltersRozetka>
+        <productType>Телевізор</productType>
+        <brand>LG</brand>
+        <allowedSum>1000</allowedSum>
+    </searchFiltersRozetka>
+</filterDataRozetka>
