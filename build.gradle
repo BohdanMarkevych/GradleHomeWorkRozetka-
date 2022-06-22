@@ -28,8 +28,8 @@ dependencies {
 test {
     useTestNG(){
         options.suites("src/test/resources/testSet.xml")
-        useDefaultListeners = true
-        outputDirectory = file ("$projectDir/testngReport")
+        //useDefaultListeners = true
+        //outputDirectory = file ("$projectDir/testngReport")
     }
 }
 

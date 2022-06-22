@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Suite]" parallel="tests" data-provider-thread-count="2">
+<suite parallel="tests" data-provider-thread-count="2" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
   <listeners>
     <listener class-name="listeners.TestListener"/>
   </listeners>
-  <test thread-count="5" verbose="0" name="test.AddToCartTest(failed)" parallel="tests">
+  <test thread-count="5" parallel="tests" name="test.AddToCartTest(failed)" verbose="0">
     <classes>
       <class name="test.AddToCartTest">
         <methods>
           <include name="tearDown"/>
           <include name="testsSetUp"/>
-          <include name="verifyThatCartContainsBillThatIsLessThanSpecifiedSum" invocation-numbers="4"/>
+          <include name="verifyThatCartContainsBillThatIsLessThanSpecifiedSum"/>
           <include name="profileSetUp"/>
         </methods>
       </class> <!-- test.AddToCartTest -->
